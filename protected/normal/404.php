@@ -1,1 +1,1 @@
-<h1 class="text-center text-danger">Whoops! It's a 404. <br></h1>
+Whoops! It's a 404.

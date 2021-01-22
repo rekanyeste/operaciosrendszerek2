@@ -2,10 +2,10 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Máj 03. 13:22
--- Kiszolgáló verziója: 10.4.11-MariaDB
--- PHP verzió: 7.4.1
+-- Gép: 127.0.0.1:3306
+-- Létrehozás ideje: 2020. Máj 12. 13:03
+-- Kiszolgáló verziója: 10.4.10-MariaDB
+-- PHP verzió: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `webprog2_zh`
+-- Adatbázis: `postify`
 --
 
 -- --------------------------------------------------------
@@ -28,41 +28,26 @@ SET time_zone = "+00:00";
 -- Tábla szerkezet ehhez a táblához `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(64) NOT NULL,
   `last_name` varchar(64) NOT NULL,
   `email` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
-  `permission` int(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `gender` int(1) NOT NULL,
+  `nationality` varchar(64) NOT NULL DEFAULT 'Undefined',
+  `permission` int(1) DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `permission`) VALUES
-(1, 'Admin', 'istrator', 'admin@admin.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 1);
-
---
--- Indexek a kiírt táblákhoz
---
-
---
--- A tábla indexei `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- A kiírt táblák AUTO_INCREMENT értéke
---
-
---
--- AUTO_INCREMENT a táblához `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `gender`, `nationality`, `permission`) VALUES
+(1, 'Zoltán', 'Nagy', 'zolya1999@gmail.com', '20eabe5d64b0e216796e834f52d61fd0b70332fc', 1, 'Magyarország', 1),
+(2, 'Elek', 'Teszt', 'Elek@teszt.com', 'c7b6b845668130956f8768d3f1ce3d391ca881d6', 2, 'svéd', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
